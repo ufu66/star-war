@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Star Wars Character Database</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Prompt:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="app-shell">
+        <main>
+            <section class="page-heading" aria-labelledby="pageTitle">
+                <div>
+                    <h1 id="pageTitle">Star <span>Wars</span></h1>
+                </div>
+                <div class="results-summary">
+                    <p id="resultCount" role="status" aria-live="polite">กำลังโหลดข้อมูล...</p>
+                </div>
+            </section>
+
+            <section class="toolbar" aria-label="ค้นหาและจัดเรียงตัวละคร">
+                <form class="search-form" onsubmit="searchCharacter(event)">
+                    <label class="search-field" for="searchInput">
+                        <span class="search-icon" aria-hidden="true"></span>
+                        <input type="search" id="searchInput" placeholder="ค้นหาชื่อตัวละคร..." autocomplete="off">
+                    </label>
+                    <button class="search-submit" type="submit">
+                        <span class="search-submit-icon" aria-hidden="true"></span>
+                        <span>ค้นหา</span>
+                    </button>
+                </form>
+
+                <div class="view-switch" role="group" aria-label="เลือกมุมมองตัวละคร">
+                    <button id="allViewButton" class="view-button" type="button" onclick="showAll()" aria-pressed="true">
+                        <span class="view-symbol" aria-hidden="true">◈</span>
+                        <span>ทั้งหมด</span>
+                    </button>
+                    <button id="likedViewButton" class="view-button" type="button" onclick="showLiked()" aria-pressed="false">
+                        <span class="view-heart" aria-hidden="true">♥</span>
+                        <span>ถูกใจ</span>
+                    </button>
+                </div>
+
+                <label class="sort-control" for="sortSelect">
+                    <span>เรียงตาม</span>
+                    <select id="sortSelect" onchange="sortCharacters()">
+                        <option value="">ค่าเริ่มต้น</option>
+                        <option value="name">ชื่อ A-Z</option>
+                        <option value="ageAsc">ปีเกิด น้อย → มาก</option>
+                        <option value="ageDesc">ปีเกิด มาก → น้อย</option>
+                    </select>
+                </label>
+            </section>
+
+            <section id="characterList" class="characters" aria-label="รายชื่อตัวละคร"></section>
+        </main>
+    </div>
+
+    <dialog id="detailModal" class="detail-dialog" aria-labelledby="detailName">
+        <div class="dialog-topline">
+            <span>PERSONNEL RECORD <span>/</span> DETAIL</span>
+            <button class="dialog-close" type="button" onclick="closeDetail()" aria-label="ปิดรายละเอียด">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+        <div class="dialog-content">
+            <div id="detailImage" class="character-image-frame detail-image-frame"></div>
+            <div class="dialog-information">
+                <p class="eyebrow">GALACTIC ARCHIVE</p>
+                <h2 id="detailName"></h2>
+                <div class="detail-facts">
+                    <p id="detailSpecies"></p>
+                    <p id="detailGender"></p>
+                    <p id="detailAge"></p>
+                    <p id="detailSkin"></p>
+                    <p id="detailPlanet"></p>
+                </div>
+            </div>
+        </div>
+    </dialog>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
