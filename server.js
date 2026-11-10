@@ -10,7 +10,7 @@ const MAX_PAGES = 50;
 const ALLOWED_RESOURCES = new Set(["people", "films", "starships", "species", "planets"]);
 const responseCache = new Map();
 const pendingRequests = new Map();
-const DIST_DIR = path.join(__dirname, "dist");
+const PUBLIC_DIR = path.join(__dirname, "public");
 
 class UpstreamError extends Error {
     constructor(message, status = 502) {
@@ -155,14 +155,14 @@ app.use("/api", (_req, res) => {
     res.status(404).json({ error: "ไม่พบ API endpoint" });
 });
 
-app.use(express.static(DIST_DIR, { fallthrough: true }));
+app.use(express.static(PUBLIC_DIR, { fallthrough: true }));
 app.use((req, res, next) => {
     if (req.method !== "GET" || req.path.startsWith("/api/")) {
         next();
         return;
     }
 
-    res.sendFile(path.join(DIST_DIR, "index.html"), (error) => {
+    res.sendFile(path.join(PUBLIC_DIR, "index.html"), (error) => {
         if (error) next(error);
     });
 });

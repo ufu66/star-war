@@ -17,7 +17,11 @@ npm run dev
 npm start
 ```
 
-สคริปต์ `start` สร้างไฟล์ด้วย Vite ก่อน แล้ว Express ให้บริการ frontend จาก `dist/` และเปิด API ใน process เดียวกัน
+สคริปต์ `start` สร้างไฟล์ด้วย Vite ลง `public/` ก่อน แล้ว Express ให้บริการ frontend และ API ใน process เดียวกัน
+
+## Deploy บน Vercel
+
+โปรเจกต์ใช้ Express preset โดย Vercel build frontend ลง `public/` เพื่อให้ CDN เสิร์ฟ static assets และส่ง API ผ่าน Express function ไฟล์โลโก้ต้นทางอยู่ใน `static/` และถูกคัดลอกเข้าผล build อัตโนมัติ
 
 รันทดสอบ DSA:
 
