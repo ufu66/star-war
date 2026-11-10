@@ -1,15 +1,23 @@
 {
   "dependencies": {
-    "express": "^5.2.1"
+    "express": "^5.2.1",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
   },
-  "name": "code",
+  "name": "star-wars-archive",
   "version": "1.0.0",
-  "description": "",
-  "main": "script.js",
-  "devDependencies": {},
+  "description": "Star Wars character and starship archive powered by SWAPI",
+  "main": "server.js",
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.7.0",
+    "concurrently": "^9.2.1",
+    "vite": "^6.3.5"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "dev": "concurrently -k \"node server.js\" \"vite --host 127.0.0.1\"",
+    "build": "vite build",
+    "start": "npm run build && node server.js",
+    "test": "node --test"
   },
   "keywords": [],
   "author": "",
